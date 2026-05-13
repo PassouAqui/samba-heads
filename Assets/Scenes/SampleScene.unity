@@ -265,7 +265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 547, y: -133.08}
+  m_AnchoredPosition: {x: 386, y: -94}
   m_SizeDelta: {x: 208.58, y: 229.57}
   m_Pivot: {x: 1.2489574, y: 0.35742334}
 --- !u!1 &355611838
@@ -375,7 +375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 306.93, y: -142.01}
+  m_AnchoredPosition: {x: 141, y: -100}
   m_SizeDelta: {x: 206.85, y: 229.57}
   m_Pivot: {x: 1.3199553, y: 0.31853896}
 --- !u!1 &865217102
@@ -556,6 +556,17 @@ MonoBehaviour:
   - {fileID: 2081158670}
   - {fileID: 178148049}
   - {fileID: 1155254852}
+  nomesPersonagens:
+  - YURI ALBERTO
+  - LUCAS PAQUETA
+  - GANSO
+  - ARTHUR CABRAL
+  - LUCIANO
+  - CARLOS VINICIUS
+  - VITOR ROQUE
+  - NEYMAR
+  - DIMMY
+  - LUCIANE
 --- !u!114 &1100147560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,7 +959,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 865, y: -100.35}
+  m_AnchoredPosition: {x: 645, y: -97}
   m_SizeDelta: {x: 198.0452, y: 229.57}
   m_Pivot: {x: 1.5892924, y: 0.5}
 --- !u!1 &1799729416
@@ -1018,7 +1029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1186, y: -642.73}
+  m_AnchoredPosition: {x: -399, y: -355}
   m_SizeDelta: {x: 208.6058, y: 229.57}
   m_Pivot: {x: -3.237914, y: -0.73363394}
 --- !u!1 &2081158670

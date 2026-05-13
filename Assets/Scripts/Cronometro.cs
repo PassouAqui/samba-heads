@@ -27,8 +27,6 @@ public class Cronometro : MonoBehaviour
     public Transform bola;
     public Transform player1;
     public Transform player2;
-    public Vector3 posicaoInicialPlayer1 = new Vector3(1.00928f, 1.23091f, 0f);
-    public Vector3 posicaoInicialPlayer2 = new Vector3(1.00928f, 1.23091f, 0f);
 
     [Header("Tela de Vitoria")]
     public GameObject painelVitoria;
@@ -45,6 +43,8 @@ public class Cronometro : MonoBehaviour
     [Header("Nomes dos Jogadores")]
     public string nomePlayer1 = "PLAYER 1";
     public string nomePlayer2 = "PLAYER 2";
+    public TextMeshProUGUI textoNomePlayer1Placar;
+    public TextMeshProUGUI textoNomePlayer2Placar;
     
     void Awake()
     {
@@ -54,12 +54,30 @@ public class Cronometro : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f; 
-        
+
+        AplicarNomesSelecionados();
+
         if (painelVitoria != null) painelVitoria.SetActive(false);
         if (painelEmpate != null) painelEmpate.SetActive(false);
         if (botoesEmpate != null) botoesEmpate.SetActive(false);
 
         AtualizarPeriodoVisual();
+    }
+
+    private void AplicarNomesSelecionados()
+    {
+        if (!string.IsNullOrWhiteSpace(SelecaoPersonagens.NomeP1))
+        {
+            nomePlayer1 = SelecaoPersonagens.NomeP1;
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelecaoPersonagens.NomeP2))
+        {
+            nomePlayer2 = SelecaoPersonagens.NomeP2;
+        }
+
+        if (textoNomePlayer1Placar != null) textoNomePlayer1Placar.text = nomePlayer1;
+        if (textoNomePlayer2Placar != null) textoNomePlayer2Placar.text = nomePlayer2;
     }
 
     public void AdicionarGol(int numeroDoPlayer)
@@ -120,27 +138,19 @@ public class Cronometro : MonoBehaviour
 
         if (player1 != null)
         {
-            player1.position = posicaoInicialPlayer1;
-
-            Rigidbody2D rb = player1.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            ControlePlayer1 scriptPlayer1 = player1.GetComponent<ControlePlayer1>();
+            if (scriptPlayer1 != null)
             {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.simulated = true;
+                scriptPlayer1.ResetarPosicao();
             }
         }
 
         if (player2 != null)
         {
-            player2.position = posicaoInicialPlayer2;
-
-            Rigidbody2D rb = player2.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            ControlePlayer2 scriptPlayer2 = player2.GetComponent<ControlePlayer2>();
+            if (scriptPlayer2 != null)
             {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.simulated = true;
+                scriptPlayer2.ResetarPosicao();
             }
         }
 
