@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,9 @@ public class ControleJogador : MonoBehaviour
     public float tempoRecargaSuperChute = 21f;
     public float multiplicadorSuperChute = 2.5f;
     public Image barraSuperChute;
+    public Color corDisponivel = Color.yellow;
+    public Color corRecargando = new Color(0.3f, 0.3f, 0.3f);
+    public TextMeshProUGUI textoSuperChute;
 
     private Rigidbody2D rb;
     private float movimentoX;
@@ -132,6 +136,20 @@ public class ControleJogador : MonoBehaviour
         if (barraSuperChute != null)
         {
             barraSuperChute.fillAmount = recargaAtualSuperChute / tempoRecargaSuperChute;
+            barraSuperChute.color = superChuteDisponivel ? corDisponivel : corRecargando;
+        }
+
+        if (textoSuperChute != null)
+        {
+            if (superChuteDisponivel)
+            {
+                textoSuperChute.text = "PRONTO!";
+            }
+            else
+            {
+                textoSuperChute.text =
+                    $"{Mathf.RoundToInt(recargaAtualSuperChute / tempoRecargaSuperChute * 100f)}%";
+            }
         }
     }
 
