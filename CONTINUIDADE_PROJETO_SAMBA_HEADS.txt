@@ -1,0 +1,148 @@
+CONTINUIDADE DO PROJETO - SAMBA HEADS
+
+Data/contexto:
+Projeto Unity 2D chamado Samba Heads, jogo de futebol arcade 1v1 local para faculdade.
+O usuario quer orientacao passo a passo, sem muitas instrucoes ao mesmo tempo.
+Sempre explicar exatamente onde clicar, onde arrastar e o que verificar na Unity.
+
+Objetivo geral da entrega:
+Transformar o prototipo em jogo entregavel para P2:
+Menu -> selecao -> carregamento -> partida -> gol/reset -> vitoria/empate/gol de ouro -> revanche/novo jogo/sair.
+
+Arquivos/cenas importantes:
+- Assets/Scenes/MenuExhibition.unity: menu principal.
+- Assets/Scenes/SampleScene.unity: selecao de personagens.
+- Assets/Scenes/Charge.unity: tela de carregamento.
+- Assets/Scenes/Estadio_Padrao.unity: arena principal jogavel.
+- Assets/Scripts/ControleJogador.cs: movimento, pulo, chute/cabeceio e animacao do jogador.
+- Assets/Scripts/Cronometro.cs: tempo, periodo, placar interno, gol de ouro, telas de vitoria/empate, revanche/novo jogo/sair.
+- Assets/Scripts/ControleBola.cs: posicao inicial/reset da bola.
+- Assets/Scripts/ControlePausa.cs: tela de pausa com Escape e RightControl.
+- Assets/Scripts/CarregamentoCena.cs: tela Charge carrega Estadio_Padrao apos tempo minimo.
+- Assets/animações/DIMMY_esq_0.controller: Animator Controller do Player 1.
+
+Coisas ja feitas:
+1. Menu principal recebeu botao Sair ligado em MenuPrincipal.Sair().
+2. Tela de vitoria criada na Estadio_Padrao.
+   - Mostra fim de jogo e nome do vencedor.
+   - Botoes: Revanche, Novo Jogo, Sair.
+3. Tela de empate separada da tela de vitoria.
+   - Empate no periodo 1: mostra empate e contagem para Gol de Ouro, sem botoes.
+   - Empate no periodo 2: mostra empate/partida encerrada com botoes.
+4. Cronometro agora tem texto do periodo.
+   - Periodo comeca em 1.
+   - Ao entrar no Gol de Ouro, muda para 2.
+5. Tela de pausa criada.
+   - Script ControlePausa no Canvas.
+   - Teclas: Escape e RightControl.
+   - Botao Sair ligado em ControlePausa.SairDoJogo().
+6. SampleScene agora envia para Charge.
+7. Charge usa CarregamentoCena para carregar Estadio_Padrao.
+8. Enter normal e Enter do teclado numerico confirmam selecao em SeletorPersonagens.
+9. Player1 esta com o campo Animator do ControleJogador apontando para DIMMY_esq_0.
+10. Animator Controller do Player1 recebeu:
+    - Parametro Bool: Andando.
+    - Parametro Trigger: Chutando.
+    - Parametro Bool: NoChao.
+    - Estado Player_Parado criado.
+    - Player_Parado definido como estado inicial.
+    - Transicao Player_Parado -> Player_Andando com Andando true.
+    - Transicao Player_Andando -> Player_Parado com Andando false.
+11. Nova animacao criada pelo usuario:
+    - Assets/animações/Player_Cabeceando.anim.
+    - Estado Player_Cabeceando ja aparece no Animator Controller.
+12. ControleJogador.cs ja separa:
+    - Se apertar teclaChute no chao: Chutar() e trigger Chutando.
+    - Se apertar teclaChute no ar: Cabecear() e trigger Cabeceando.
+
+Pontos de atencao:
+- Cronometro.cs esta com tempoLimite = 10f em algum momento de teste. Antes da entrega, voltar para 180f.
+- O chute ainda nao tem fisica real na bola.
+- O cabeceio ainda nao tem fisica real na bola.
+- O Animator ainda precisa conectar os triggers Chutando e Cabeceando aos estados corretos.
+- O Player2 ainda nao tem a animacao conectada.
+- A selecao de personagens ainda nao aplica o personagem escolhido na partida.
+- Para personagens em campo, os assets principais parecem estar em Assets/Scenes/Sprites_Soccer como arquivos .psd, possivelmente com rig/Sprite Skin.
+- PNGs em Assets/Sprites/Personagens parecem melhores para cards de selecao.
+
+O que o usuario quer fazer agora:
+Conectar primeiro as animacoes e a fisica do chute.
+O processo deve ser:
+1. No Animator, criar parametro Trigger Cabeceando.
+2. Conectar Player_Chutando:
+   - transicao Any State -> Player_Chutando com condicao Chutando.
+   - transicao Player_Chutando -> Player_Parado, sem precisar de botao, apos terminar animacao.
+3. Conectar Player_Cabeceando:
+   - transicao Any State -> Player_Cabeceando com condicao Cabeceando.
+   - transicao Player_Cabeceando -> Player_Parado, apos terminar animacao.
+4. Depois ajustar script ControleJogador.cs para fisica:
+   - detectar bola perto do jogador.
+   - se no chao, aplicar forca de chute na bola.
+   - se no ar, aplicar forca de cabeceio na bola.
+   - expor no Inspector alcanceChute, forcaChute, forcaCabecada e Transform pontoChute.
+5. Na Unity, criar/usar um ponto de chute como filho do Player1 ou usar o proprio Transform do player.
+6. Testar no Player1 antes de replicar para Player2.
+
+Estilo de explicacao desejado:
+Sempre um passo por vez.
+Exemplo:
+"Passo 1: clique em X. Me diga quando aparecer Y."
+Nao mandar 10 passos de uma vez.
+O usuario prefere fazer manualmente na Unity com orientacao detalhada.
+
+ATUALIZACAO MAIS RECENTE:
+
+1. Animator do Player1
+
+No Animator Controller Assets/animações/DIMMY_esq_0.controller:
+- Ja existe o parametro Bool Andando.
+- Ja existe o parametro Trigger Chutando.
+- Ja existe o parametro Bool NoChao.
+- Foi criado/adicionado o parametro Trigger Cabeceando.
+- Estado Player_Parado e o estado inicial/default.
+- Player_Parado -> Player_Andando usa condicao Andando true.
+- Player_Andando -> Player_Parado usa condicao Andando false.
+- Any State -> Player_Chutando usa condicao Chutando.
+- Player_Chutando -> Player_Parado usa Has Exit Time marcado e sem Conditions.
+- Any State -> Player_Cabeceando usa condicao Cabeceando.
+- Player_Cabeceando -> Player_Parado usa Has Exit Time marcado e sem Conditions.
+
+2. Script ControleJogador.cs
+
+Foi alterado para separar chute e cabeceio:
+- Se apertar a tecla de chute no chao, chama Chutar().
+- Se apertar a tecla de chute no ar, chama Cabecear().
+
+Foi adicionada fisica basica:
+- pontoChute: origem/area do chute.
+- bola: Rigidbody2D da bola.
+- alcanceChute: distancia maxima para acertar a bola.
+- forcaChute: forca do chute no chao.
+- forcaCabecada: forca da cabecada no ar.
+- direcaoCabecada: direcao da cabecada, padrao para frente e um pouco para cima.
+
+O chute atualmente empurra a bola reto para frente.
+O cabeceio empurra a bola para frente e um pouco para cima.
+
+3. Player1 configurado na cena Estadio_Padrao
+
+No objeto Player1:
+- Campo Animator do ControleJogador aponta para DIMMY_esq_0.
+- Campo Bola foi preenchido com o objeto bola.
+- Foi criado o filho PontoChute dentro de Player1.
+- PontoChute foi posicionado na frente/pe do jogador.
+- Campo Ponto Chute foi preenchido com PontoChute.
+- Valores atuais iniciais: alcance 1.2, forca chute 12, forca cabecada 9.
+
+4. Player2
+
+O Player2 tem o filho LUCIANE_dir_0.
+Antes LUCIANE_dir_0 tinha apenas Sprite Renderer.
+O usuario criou os ossos/rig para LUCIANE_dir_0 no Skinning Editor.
+Agora LUCIANE_dir_0 tem Sprite Skin e bones configurados.
+
+Proximo passo recomendado:
+Adicionar Animator no LUCIANE_dir_0, apontar para um controller compativel, ligar o Animator no ControleJogador do Player2, criar PontoChute no Player2, ligar bola e ajustar direcao/forca.
+
+Observacao:
+Antes de replicar completamente animacao no Player2, testar se o controller/anims do Player1 funcionam bem no rig da LUCIANE. Se deformar errado, criar controller/animations proprios para Player2.
