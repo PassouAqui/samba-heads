@@ -2392,6 +2392,7 @@ GameObject:
   - component: {fileID: 714835951}
   - component: {fileID: 714835953}
   - component: {fileID: 714835952}
+  - component: {fileID: 887720501}
   m_Layer: 0
   m_Name: DIMMY_esq_0
   m_TagString: Untagged
@@ -2529,6 +2530,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &887720501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714835949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c4f1a2b3d4567890abcdef12345678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AplicarPersonagemSelecionado
+  jogador: 0
 --- !u!1 &738093549
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,6 +6206,7 @@ GameObject:
   - component: {fileID: 1971023761}
   - component: {fileID: 1971023762}
   - component: {fileID: 1971023763}
+  - component: {fileID: 887720502}
   m_Layer: 0
   m_Name: LUCIANE_dir_0
   m_TagString: Untagged
@@ -6329,6 +6344,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &887720502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971023759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c4f1a2b3d4567890abcdef12345678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AplicarPersonagemSelecionado
+  jogador: 1
 --- !u!1 &2016064114
 GameObject:
   m_ObjectHideFlags: 0

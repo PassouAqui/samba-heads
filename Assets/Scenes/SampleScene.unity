@@ -556,6 +556,28 @@ MonoBehaviour:
   - {fileID: 2081158670}
   - {fileID: 178148049}
   - {fileID: 1155254852}
+  spritesP1Esq:
+  - {fileID: -4037407368763973712, guid: 1926575d5c89fff409bf429955ea8a3b, type: 3}
+  - {fileID: 1342759908593358611, guid: de3afbbc63df7bb48b5e5ba80c822ffc, type: 3}
+  - {fileID: 7248313134069929796, guid: 657cd0f7c39f3cb40a040015ead04292, type: 3}
+  - {fileID: -4714064039559592268, guid: 39058923d079c8c48b4e80605037b79e, type: 3}
+  - {fileID: -709625530094398986, guid: 5582f2f4ab7d64342874441f128c8ce7, type: 3}
+  - {fileID: 2262144841530121902, guid: 0fb14d642d0eb3c448d9b0ca8fbfa231, type: 3}
+  - {fileID: 5556508818327093298, guid: 1f810538ce785684fb408242b5d0c5ea, type: 3}
+  - {fileID: 317630830840265516, guid: e956d53da8c588647b6a7fa5898e8c86, type: 3}
+  - {fileID: 7272193348598135445, guid: 2c0294fcbe978c14b8fdf5eda96eb7d1, type: 3}
+  - {fileID: -5152941389391005470, guid: 6dbd7ba266058524a80264890e1bce7e, type: 3}
+  spritesP2Dir:
+  - {fileID: 7276598673580234899, guid: ceedfe8335cdcab42abe39143bdf6d8e, type: 3}
+  - {fileID: 1655497234672558872, guid: d51fa3e8c42bab34eb4b5851a6a3e72b, type: 3}
+  - {fileID: 2238794303773054710, guid: 9878fb88241d1254cb028d6050092502, type: 3}
+  - {fileID: -7973942561248058551, guid: e4a8ec62f8af7b1418abbdc2ca1d0eb0, type: 3}
+  - {fileID: -715682212985675586, guid: b04b2c71bce92644c9eeae0c17e9a86d, type: 3}
+  - {fileID: -1193818086920691157, guid: 97219a231cb352943933f24e690ad3e8, type: 3}
+  - {fileID: -6395527316924398722, guid: 36f46331b94ac6e49b65a1a9ffd28cc8, type: 3}
+  - {fileID: -8672566608748520037, guid: 89d1e8386fb76d0429643476f9f1d8cf, type: 3}
+  - {fileID: -3799972557183714254, guid: 110288c3ccd69ff45832aa01a98ad9fc, type: 3}
+  - {fileID: -6558048179644475891, guid: 078190809c39e6d4297c77b2d4ed93c5, type: 3}
 --- !u!114 &1100147560
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -8,6 +7,10 @@ public class SeletorPersonagens : MonoBehaviour
     public RectTransform bordaP1, bordaP2;
     public GameObject avisoEnter;
     public GameObject[] todosBotoes;
+
+    [Header("Sprites por slot (mesma ordem de todosBotoes)")]
+    public Sprite[] spritesP1Esq;
+    public Sprite[] spritesP2Dir;
 
     private int indexP1 = 0, indexP2 = 1;
     private bool p1Confirmou = false, p2Confirmou = false;
@@ -57,7 +60,11 @@ public class SeletorPersonagens : MonoBehaviour
         if (p1Confirmou && p2Confirmou)
         {
             if (avisoEnter) avisoEnter.SetActive(true);
-            if (EnterPressionado(teclado)) SceneManager.LoadScene("Charge");
+            if (EnterPressionado(teclado))
+            {
+                SalvarEscolhaParaPartida();
+                SceneManager.LoadScene("Charge");
+            }
         }
 
         AtualizarPosicao();
@@ -65,16 +72,19 @@ public class SeletorPersonagens : MonoBehaviour
 
     void MoverHorizontalP1(int dir)
     {
+        if (todosBotoes == null || todosBotoes.Length == 0) return;
         indexP1 = (indexP1 + dir + todosBotoes.Length) % todosBotoes.Length;
     }
 
     void MoverHorizontalP2(int dir)
     {
+        if (todosBotoes == null || todosBotoes.Length == 0) return;
         indexP2 = (indexP2 + dir + todosBotoes.Length) % todosBotoes.Length;
     }
 
     int BuscarMaisProximo(int atual, Vector2 direcao)
     {
+        if (todosBotoes == null || todosBotoes.Length == 0) return atual;
         int melhorEscolha = atual;
         float menorDistancia = float.MaxValue;
         Vector3 posAtual = todosBotoes[atual].transform.position;
@@ -101,10 +111,28 @@ public class SeletorPersonagens : MonoBehaviour
 
     void AtualizarPosicao()
     {
-        if (todosBotoes.Length > 0)
+        if (todosBotoes == null || todosBotoes.Length == 0) return;
+        if (todosBotoes[indexP1] != null && bordaP1 != null)
         {
             bordaP1.position = todosBotoes[indexP1].transform.position;
+        }
+
+        if (todosBotoes[indexP2] != null && bordaP2 != null)
+        {
             bordaP2.position = todosBotoes[indexP2].transform.position;
+        }
+    }
+
+    private void SalvarEscolhaParaPartida()
+    {
+        if (spritesP1Esq != null && indexP1 >= 0 && indexP1 < spritesP1Esq.Length)
+        {
+            SelecaoPersonagens.SpriteP1 = spritesP1Esq[indexP1];
+        }
+
+        if (spritesP2Dir != null && indexP2 >= 0 && indexP2 < spritesP2Dir.Length)
+        {
+            SelecaoPersonagens.SpriteP2 = spritesP2Dir[indexP2];
         }
     }
 
